@@ -28,8 +28,8 @@ jobs:
     - name: Setup MinGW64
       run: |
         cd ..  #Directory: D:\a\buildQt
-        curl -L -o x86_64-release-posix-seh-ucrt.7z https://github.com/niXman/mingw-builds-binaries/releases/download/14.2.0-rt_v12-rev2/x86_64-14.2.0-release-posix-seh-ucrt-rt_v12-rev2.7z
-        7z x D:\a\buildQt\x86_64-release-posix-seh-ucrt.7z -oD:\a\buildQt
+        curl -L -o x86_64-release-posix-seh-msvcrt.7z https://github.com/niXman/mingw-builds-binaries/releases/download/14.2.0-rt_v12-rev2/x86_64-14.2.0-release-posix-seh-msvcrt-rt_v12-rev2.7z
+        7z x D:\a\buildQt\x86_64-release-posix-seh-msvcrt.7z -oD:\a\buildQt
 
     # 安装 Ninja
     - name: Setup Ninja
@@ -60,6 +60,8 @@ jobs:
         # 下载源代码并解压，源代码目录D:\a\buildQt\Qt\${{env.QT_VERSION}}\XXX
         curl -L -o qt-everywhere-src.zip https://download.qt.io/official_releases/qt/${{env.QT_VERSION2}}/${{env.QT_VERSION}}/single/qt-everywhere-src-${{env.QT_VERSION}}.zip
         unzip -q qt-everywhere-src.zip -d ./${{env.QT_VERSION}}
+        curl -L -o win7-patch.zip https://github.com/parhelia512/buildQt/raw/shared-release-win7/win7-patch.zip
+        unzip -q -o win7-patch.zip -d ./${{env.QT_VERSION}}/qt-everywhere-src-${{env.QT_VERSION}}/qtbase
 
         # 调用编译脚本
         cmd.exe /c "call `"D:\a\buildQt\buildQt\buildQt6\build-Qt6mingw64.cmd`""
