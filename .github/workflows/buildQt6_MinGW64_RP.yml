@@ -30,6 +30,9 @@ jobs:
         cd ..  #Directory: D:\a\buildQt
         curl -L -o x86_64-release-posix-seh-msvcrt.7z https://github.com/niXman/mingw-builds-binaries/releases/download/14.2.0-rt_v12-rev2/x86_64-14.2.0-release-posix-seh-msvcrt-rt_v12-rev2.7z
         7z x D:\a\buildQt\x86_64-release-posix-seh-msvcrt.7z -oD:\a\buildQt
+        
+        curl -L -o openssl.zip https://github.com/parhelia512/buildQt/raw/shared-release-win7/openssl.zip
+        unzip -q openssl.zip -d .
 
     # 安装 Ninja
     - name: Setup Ninja
